@@ -247,6 +247,10 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
         }
 
+        .stamp-header-clickable:hover {
+            opacity: 0.9;
+        }
+
         .stamp-header {
             display: flex;
             justify-content: space-between;
@@ -372,6 +376,7 @@
             const [showAddGameModal, setShowAddGameModal] = useState(false);
             const [games, setGames] = useState([]);
             const [stadiums, setStadiums] = useState([]);
+            const [expandedStadium, setExpandedStadium] = useState(null);
 
             const leagues = ['ALL', 'MLB', 'NFL', 'NBA', 'MLS', 'NHL'];
 
@@ -464,26 +469,12 @@
                         <div className="stats-grid">
                             <div className="stat-card">
                                 <div className="stat-number">{stats.totalStadiums}</div>
-                                <div className="stat-label">Stadiums</div>
+                                <div className="stat-label">Total Stadiums</div>
                             </div>
                             <div className="stat-card">
                                 <div className="stat-number">{stats.totalGames}</div>
-                                <div className="stat-label">Games</div>
+                                <div className="stat-label">Total Games</div>
                             </div>
-                        </div>
-
-                        <div className="stats-grid">
-                            {leagues.slice(1).map(league => (
-                                <div key={league} className="stat-card">
-                                    <div className="stat-label">{league}</div>
-                                    <div style={{ color: '#d4af37', fontSize: '1.2rem', marginTop: '10px' }}>
-                                        {stats.leagueBreakdown[league].stadiums} stadiums
-                                    </div>
-                                    <div style={{ color: '#b8945f', fontSize: '0.9rem' }}>
-                                        {stats.leagueBreakdown[league].games} games
-                                    </div>
-                                </div>
-                            ))}
                         </div>
 
                         <div style={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
@@ -523,6 +514,19 @@
                             ))}
                         </div>
 
+                        {activeLeague !== 'ALL' && (
+                            <div className="stats-grid" style={{ marginTop: '30px' }}>
+                                <div className="stat-card">
+                                    <div className="stat-number">{stats.leagueBreakdown[activeLeague].stadiums}</div>
+                                    <div className="stat-label">{activeLeague} Stadiums</div>
+                                </div>
+                                <div className="stat-card">
+                                    <div className="stat-number">{stats.leagueBreakdown[activeLeague].games}</div>
+                                    <div className="stat-label">{activeLeague} Games</div>
+                                </div>
+                            </div>
+                        )}
+
                         {filteredStadiums.length === 0 ? (
                             <div className="empty-state">
                                 <div className="empty-state-icon">🏟️</div>
@@ -539,36 +543,49 @@
                                         g.stadium.toLowerCase() === stadium.name.toLowerCase() && 
                                         g.league === stadium.league
                                     );
+                                    const stadiumKey = `${stadium.league}-${stadium.name}`;
+                                    const isExpanded = expandedStadium === stadiumKey;
 
                                     return (
-                                        <div key={`${stadium.league}-${stadium.name}`} className="stamp">
-                                            <div className="stamp-header">
-                                                <div className="stamp-league">{stadium.league}</div>
-                                                <div className="stamp-visits">
-                                                    {stadium.visitCount} {stadium.visitCount === 1 ? 'visit' : 'visits'}
+                                        <div key={stadiumKey} className="stamp">
+                                            <div 
+                                                className="stamp-header-clickable" 
+                                                onClick={() => setExpandedStadium(isExpanded ? null : stadiumKey)}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                <div className="stamp-header">
+                                                    <div className="stamp-league">{stadium.league}</div>
+                                                    <div className="stamp-visits">
+                                                        {stadium.visitCount} {stadium.visitCount === 1 ? 'visit' : 'visits'}
+                                                    </div>
+                                                </div>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                    <div>
+                                                        <div className="stamp-stadium">{stadium.name}</div>
+                                                        <div className="stamp-city">{stadium.city}</div>
+                                                    </div>
+                                                    <div style={{ fontSize: '1.5rem', color: '#d4af37', marginLeft: '10px' }}>
+                                                        {isExpanded ? '▼' : '▶'}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div className="stamp-stadium">{stadium.name}</div>
-                                            <div className="stamp-city">{stadium.city}</div>
                                             
-                                            {stadiumGames.slice(0, 3).map(game => (
-                                                <div key={game.id} className="stamp-game">
-                                                    <div className="stamp-teams">
-                                                        {game.awayTeam} @ {game.homeTeam}
-                                                    </div>
-                                                    <div className="stamp-score">
-                                                        {game.awayScore} - {game.homeScore}
-                                                    </div>
-                                                    <div className="stamp-date">{game.date}</div>
-                                                    {game.notes && (
-                                                        <div className="stamp-notes">{game.notes}</div>
-                                                    )}
-                                                </div>
-                                            ))}
-                                            
-                                            {stadiumGames.length > 3 && (
-                                                <div style={{ textAlign: 'center', marginTop: '10px', color: '#b8945f', fontSize: '0.9rem' }}>
-                                                    +{stadiumGames.length - 3} more {stadiumGames.length - 3 === 1 ? 'game' : 'games'}
+                                            {isExpanded && (
+                                                <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '2px dashed #d4af37' }}>
+                                                    {stadiumGames.map(game => (
+                                                        <div key={game.id} className="stamp-game">
+                                                            <div className="stamp-teams">
+                                                                {game.awayTeam} @ {game.homeTeam}
+                                                            </div>
+                                                            <div className="stamp-score">
+                                                                {game.awayScore} - {game.homeScore}
+                                                            </div>
+                                                            <div className="stamp-date">{game.date}</div>
+                                                            {game.notes && (
+                                                                <div className="stamp-notes">{game.notes}</div>
+                                                            )}
+                                                        </div>
+                                                    ))}
                                                 </div>
                                             )}
                                         </div>
@@ -588,6 +605,7 @@
                 league: 'MLB',
                 stadium: '',
                 city: '',
+                state: '',
                 homeTeam: '',
                 awayTeam: '',
                 homeScore: '',
@@ -605,8 +623,12 @@
 
             const handleSubmit = (e) => {
                 e.preventDefault();
-                if (formData.stadium && formData.city && formData.homeTeam && formData.awayTeam) {
-                    onSave(formData);
+                if (formData.stadium && formData.city && formData.state && formData.homeTeam && formData.awayTeam) {
+                    const gameData = {
+                        ...formData,
+                        city: `${formData.city}, ${formData.state}` // Combine for display
+                    };
+                    onSave(gameData);
                 }
             };
 
@@ -644,17 +666,31 @@
                                 />
                             </div>
 
-                            <div className="form-group">
-                                <label className="form-label">City *</label>
-                                <input 
-                                    type="text" 
-                                    name="city"
-                                    className="form-input"
-                                    value={formData.city}
-                                    onChange={handleChange}
-                                    required
-                                    placeholder="e.g., Boston, MA"
-                                />
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label className="form-label">City *</label>
+                                    <input 
+                                        type="text" 
+                                        name="city"
+                                        className="form-input"
+                                        value={formData.city}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="e.g., Boston"
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label className="form-label">State *</label>
+                                    <input 
+                                        type="text" 
+                                        name="state"
+                                        className="form-input"
+                                        value={formData.state}
+                                        onChange={handleChange}
+                                        required
+                                        placeholder="e.g., MA"
+                                    />
+                                </div>
                             </div>
 
                             <div className="form-row">
