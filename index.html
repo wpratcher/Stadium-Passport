@@ -370,6 +370,173 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
+        // Stadium Library
+        const STADIUM_LIBRARY = {
+            MLB: [
+                { name: "Angel Stadium", city: "Anaheim", state: "CA" },
+                { name: "Chase Field", city: "Phoenix", state: "AZ" },
+                { name: "Citi Field", city: "Queens", state: "NY" },
+                { name: "Citizens Bank Park", city: "Philadelphia", state: "PA" },
+                { name: "Comerica Park", city: "Detroit", state: "MI" },
+                { name: "Coors Field", city: "Denver", state: "CO" },
+                { name: "Dodger Stadium", city: "Los Angeles", state: "CA" },
+                { name: "Fenway Park", city: "Boston", state: "MA" },
+                { name: "Globe Life Field", city: "Arlington", state: "TX" },
+                { name: "Great American Ball Park", city: "Cincinnati", state: "OH" },
+                { name: "Guaranteed Rate Field", city: "Chicago", state: "IL" },
+                { name: "Kauffman Stadium", city: "Kansas City", state: "MO" },
+                { name: "loanDepot park", city: "Miami", state: "FL" },
+                { name: "Minute Maid Park", city: "Houston", state: "TX" },
+                { name: "Nationals Park", city: "Washington", state: "DC" },
+                { name: "Oracle Park", city: "San Francisco", state: "CA" },
+                { name: "Oriole Park at Camden Yards", city: "Baltimore", state: "MD" },
+                { name: "Petco Park", city: "San Diego", state: "CA" },
+                { name: "PNC Park", city: "Pittsburgh", state: "PA" },
+                { name: "Progressive Field", city: "Cleveland", state: "OH" },
+                { name: "Rogers Centre", city: "Toronto", state: "ON" },
+                { name: "T-Mobile Park", city: "Seattle", state: "WA" },
+                { name: "Target Field", city: "Minneapolis", state: "MN" },
+                { name: "Tropicana Field", city: "St. Petersburg", state: "FL" },
+                { name: "Truist Park", city: "Atlanta", state: "GA" },
+                { name: "Wrigley Field", city: "Chicago", state: "IL" },
+                { name: "Yankee Stadium", city: "Bronx", state: "NY" },
+                { name: "Oakland Coliseum", city: "Oakland", state: "CA" },
+                { name: "Busch Stadium", city: "St. Louis", state: "MO" },
+                { name: "American Family Field", city: "Milwaukee", state: "WI" }
+            ],
+            NFL: [
+                { name: "Acrisure Stadium", city: "Pittsburgh", state: "PA" },
+                { name: "Allegiant Stadium", city: "Las Vegas", state: "NV" },
+                { name: "Arrowhead Stadium", city: "Kansas City", state: "MO" },
+                { name: "AT&T Stadium", city: "Arlington", state: "TX" },
+                { name: "Bank of America Stadium", city: "Charlotte", state: "NC" },
+                { name: "Caesars Superdome", city: "New Orleans", state: "LA" },
+                { name: "Empower Field at Mile High", city: "Denver", state: "CO" },
+                { name: "EverBank Stadium", city: "Jacksonville", state: "FL" },
+                { name: "FedExField", city: "Landover", state: "MD" },
+                { name: "Ford Field", city: "Detroit", state: "MI" },
+                { name: "Gillette Stadium", city: "Foxborough", state: "MA" },
+                { name: "Hard Rock Stadium", city: "Miami Gardens", state: "FL" },
+                { name: "Highmark Stadium", city: "Orchard Park", state: "NY" },
+                { name: "Lambeau Field", city: "Green Bay", state: "WI" },
+                { name: "Levi's Stadium", city: "Santa Clara", state: "CA" },
+                { name: "Lincoln Financial Field", city: "Philadelphia", state: "PA" },
+                { name: "Lumen Field", city: "Seattle", state: "WA" },
+                { name: "M&T Bank Stadium", city: "Baltimore", state: "MD" },
+                { name: "Mercedes-Benz Stadium", city: "Atlanta", state: "GA" },
+                { name: "MetLife Stadium", city: "East Rutherford", state: "NJ" },
+                { name: "Nissan Stadium", city: "Nashville", state: "TN" },
+                { name: "Northwest Stadium", city: "Landover", state: "MD" },
+                { name: "NRG Stadium", city: "Houston", state: "TX" },
+                { name: "Paycor Stadium", city: "Cincinnati", state: "OH" },
+                { name: "Raymond James Stadium", city: "Tampa", state: "FL" },
+                { name: "SoFi Stadium", city: "Inglewood", state: "CA" },
+                { name: "Soldier Field", city: "Chicago", state: "IL" },
+                { name: "State Farm Stadium", city: "Glendale", state: "AZ" },
+                { name: "U.S. Bank Stadium", city: "Minneapolis", state: "MN" },
+                { name: "Tottenham Hotspur Stadium", city: "London", state: "UK" },
+                { name: "Wembley Stadium", city: "London", state: "UK" }
+            ],
+            NBA: [
+                { name: "Barclays Center", city: "Brooklyn", state: "NY" },
+                { name: "Capital One Arena", city: "Washington", state: "DC" },
+                { name: "Chase Center", city: "San Francisco", state: "CA" },
+                { name: "Crypto.com Arena", city: "Los Angeles", state: "CA" },
+                { name: "Delta Center", city: "Salt Lake City", state: "UT" },
+                { name: "Fiserv Forum", city: "Milwaukee", state: "WI" },
+                { name: "Footprint Center", city: "Phoenix", state: "AZ" },
+                { name: "FedExForum", city: "Memphis", state: "TN" },
+                { name: "Frost Bank Center", city: "San Antonio", state: "TX" },
+                { name: "Gainbridge Fieldhouse", city: "Indianapolis", state: "IN" },
+                { name: "Golden 1 Center", city: "Sacramento", state: "CA" },
+                { name: "Intuit Dome", city: "Inglewood", state: "CA" },
+                { name: "Kaseya Center", city: "Miami", state: "FL" },
+                { name: "Little Caesars Arena", city: "Detroit", state: "MI" },
+                { name: "Madison Square Garden", city: "New York", state: "NY" },
+                { name: "Moda Center", city: "Portland", state: "OR" },
+                { name: "Moody Center", city: "Austin", state: "TX" },
+                { name: "Paycom Center", city: "Oklahoma City", state: "OK" },
+                { name: "Rocket Mortgage FieldHouse", city: "Cleveland", state: "OH" },
+                { name: "Scotiabank Arena", city: "Toronto", state: "ON" },
+                { name: "Smoothie King Center", city: "New Orleans", state: "LA" },
+                { name: "Spectrum Center", city: "Charlotte", state: "NC" },
+                { name: "State Farm Arena", city: "Atlanta", state: "GA" },
+                { name: "Target Center", city: "Minneapolis", state: "MN" },
+                { name: "TD Garden", city: "Boston", state: "MA" },
+                { name: "Toyota Center", city: "Houston", state: "TX" },
+                { name: "United Center", city: "Chicago", state: "IL" },
+                { name: "Wells Fargo Center", city: "Philadelphia", state: "PA" },
+                { name: "Ball Arena", city: "Denver", state: "CO" },
+                { name: "Amway Center", city: "Orlando", state: "FL" }
+            ],
+            MLS: [
+                { name: "Audi Field", city: "Washington", state: "DC" },
+                { name: "Bank of America Stadium", city: "Charlotte", state: "NC" },
+                { name: "BC Place", city: "Vancouver", state: "BC" },
+                { name: "BMO Field", city: "Toronto", state: "ON" },
+                { name: "BMO Stadium", city: "Los Angeles", state: "CA" },
+                { name: "Chase Stadium", city: "Fort Lauderdale", state: "FL" },
+                { name: "Children's Mercy Park", city: "Kansas City", state: "KS" },
+                { name: "CITYPARK", city: "St. Louis", state: "MO" },
+                { name: "Dick's Sporting Goods Park", city: "Commerce City", state: "CO" },
+                { name: "Exploria Stadium", city: "Orlando", state: "FL" },
+                { name: "Field", city: "Columbus", state: "OH" },
+                { name: "Geodis Park", city: "Nashville", state: "TN" },
+                { name: "Gillette Stadium", city: "Foxborough", state: "MA" },
+                { name: "History Miami Stadium", city: "Miami", state: "FL" },
+                { name: "Lower.com Field", city: "Columbus", state: "OH" },
+                { name: "Lumen Field", city: "Seattle", state: "WA" },
+                { name: "Mercedes-Benz Stadium", city: "Atlanta", state: "GA" },
+                { name: "PayPal Park", city: "San Jose", state: "CA" },
+                { name: "Providence Park", city: "Portland", state: "OR" },
+                { name: "Q2 Stadium", city: "Austin", state: "TX" },
+                { name: "Red Bull Arena", city: "Harrison", state: "NJ" },
+                { name: "Rio Tinto Stadium", city: "Sandy", state: "UT" },
+                { name: "Saputo Stadium", city: "Montreal", state: "QC" },
+                { name: "Shell Energy Stadium", city: "Houston", state: "TX" },
+                { name: "Snapdragon Stadium", city: "San Diego", state: "CA" },
+                { name: "SoFi Stadium", city: "Inglewood", state: "CA" },
+                { name: "Subaru Park", city: "Chester", state: "PA" },
+                { name: "TQL Stadium", city: "Cincinnati", state: "OH" },
+                { name: "Toyota Stadium", city: "Frisco", state: "TX" },
+                { name: "Yankee Stadium", city: "Bronx", state: "NY" }
+            ],
+            NHL: [
+                { name: "Amalie Arena", city: "Tampa", state: "FL" },
+                { name: "American Airlines Center", city: "Dallas", state: "TX" },
+                { name: "Ball Arena", city: "Denver", state: "CO" },
+                { name: "Bridgestone Arena", city: "Nashville", state: "TN" },
+                { name: "Canada Life Centre", city: "Winnipeg", state: "MB" },
+                { name: "Canadian Tire Centre", city: "Ottawa", state: "ON" },
+                { name: "Capital One Arena", city: "Washington", state: "DC" },
+                { name: "Climate Pledge Arena", city: "Seattle", state: "WA" },
+                { name: "Delta Center", city: "Salt Lake City", state: "UT" },
+                { name: "Enterprise Center", city: "St. Louis", state: "MO" },
+                { name: "FLA Live Arena", city: "Sunrise", state: "FL" },
+                { name: "KeyBank Center", city: "Buffalo", state: "NY" },
+                { name: "Lenovo Center", city: "Raleigh", state: "NC" },
+                { name: "Little Caesars Arena", city: "Detroit", state: "MI" },
+                { name: "Madison Square Garden", city: "New York", state: "NY" },
+                { name: "Mullett Arena", city: "Tempe", state: "AZ" },
+                { name: "Nationwide Arena", city: "Columbus", state: "OH" },
+                { name: "PPG Paints Arena", city: "Pittsburgh", state: "PA" },
+                { name: "Prudential Center", city: "Newark", state: "NJ" },
+                { name: "Rogers Arena", city: "Vancouver", state: "BC" },
+                { name: "Rogers Place", city: "Edmonton", state: "AB" },
+                { name: "SAP Center", city: "San Jose", state: "CA" },
+                { name: "Scotiabank Arena", city: "Toronto", state: "ON" },
+                { name: "T-Mobile Arena", city: "Las Vegas", state: "NV" },
+                { name: "TD Garden", city: "Boston", state: "MA" },
+                { name: "UBS Arena", city: "Elmont", state: "NY" },
+                { name: "United Center", city: "Chicago", state: "IL" },
+                { name: "Wells Fargo Center", city: "Philadelphia", state: "PA" },
+                { name: "Xcel Energy Center", city: "St. Paul", state: "MN" },
+                { name: "Crypto.com Arena", city: "Los Angeles", state: "CA" },
+                { name: "Honda Center", city: "Anaheim", state: "CA" },
+                { name: "Scotiabank Saddledome", city: "Calgary", state: "AB" }
+            ]
+        };
+
         function StadiumPassport() {
             const [view, setView] = useState('home');
             const [activeLeague, setActiveLeague] = useState('ALL');
@@ -475,6 +642,37 @@
                                 <div className="stat-number">{stats.totalGames}</div>
                                 <div className="stat-label">Total Games</div>
                             </div>
+                        </div>
+
+                        <div className="section-title" style={{ marginTop: '40px' }}>BY LEAGUE</div>
+                        <div className="stats-grid">
+                            {leagues.slice(1).map(league => (
+                                <div 
+                                    key={league} 
+                                    className="stat-card" 
+                                    onClick={() => {
+                                        setActiveLeague(league);
+                                        setView('stamps');
+                                    }}
+                                    style={{ cursor: 'pointer', transition: 'all 0.3s' }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(-4px)';
+                                        e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.3)';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
+                                    }}
+                                >
+                                    <div className="stat-label">{league}</div>
+                                    <div style={{ color: '#d4af37', fontSize: '1.2rem', marginTop: '10px' }}>
+                                        {stats.leagueBreakdown[league].stadiums} stadiums
+                                    </div>
+                                    <div style={{ color: '#b8945f', fontSize: '0.9rem' }}>
+                                        {stats.leagueBreakdown[league].games} games
+                                    </div>
+                                </div>
+                            ))}
                         </div>
 
                         <div style={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
@@ -614,11 +812,36 @@
                 notes: ''
             });
 
+            const availableStadiums = STADIUM_LIBRARY[formData.league] || [];
+            const selectedStadiumData = availableStadiums.find(s => s.name === formData.stadium);
+
             const handleChange = (e) => {
-                setFormData({
-                    ...formData,
-                    [e.target.name]: e.target.value
-                });
+                const { name, value } = e.target;
+                
+                if (name === 'league') {
+                    // Reset stadium when league changes
+                    setFormData({
+                        ...formData,
+                        league: value,
+                        stadium: '',
+                        city: '',
+                        state: ''
+                    });
+                } else if (name === 'stadium') {
+                    // Auto-fill city and state when stadium is selected
+                    const stadiumData = availableStadiums.find(s => s.name === value);
+                    setFormData({
+                        ...formData,
+                        stadium: value,
+                        city: stadiumData?.city || '',
+                        state: stadiumData?.state || ''
+                    });
+                } else {
+                    setFormData({
+                        ...formData,
+                        [name]: value
+                    });
+                }
             };
 
             const handleSubmit = (e) => {
@@ -654,44 +877,36 @@
                             </div>
 
                             <div className="form-group">
-                                <label className="form-label">Stadium Name *</label>
-                                <input 
-                                    type="text" 
-                                    name="stadium"
-                                    className="form-input"
+                                <label className="form-label">Stadium *</label>
+                                <select 
+                                    name="stadium" 
+                                    className="form-select" 
                                     value={formData.stadium}
                                     onChange={handleChange}
                                     required
-                                    placeholder="e.g., Fenway Park"
-                                />
+                                >
+                                    <option value="">Select a stadium...</option>
+                                    {availableStadiums.map(stadium => (
+                                        <option key={stadium.name} value={stadium.name}>
+                                            {stadium.name} - {stadium.city}, {stadium.state}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label className="form-label">City *</label>
-                                    <input 
-                                        type="text" 
-                                        name="city"
-                                        className="form-input"
-                                        value={formData.city}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="e.g., Boston"
-                                    />
+                            {selectedStadiumData && (
+                                <div style={{ 
+                                    background: '#0f1419', 
+                                    border: '1px solid #d4af37', 
+                                    borderRadius: '6px', 
+                                    padding: '12px',
+                                    marginBottom: '20px',
+                                    color: '#b8945f',
+                                    fontSize: '0.9rem'
+                                }}>
+                                    📍 {selectedStadiumData.city}, {selectedStadiumData.state}
                                 </div>
-                                <div className="form-group">
-                                    <label className="form-label">State *</label>
-                                    <input 
-                                        type="text" 
-                                        name="state"
-                                        className="form-input"
-                                        value={formData.state}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="e.g., MA"
-                                    />
-                                </div>
-                            </div>
+                            )}
 
                             <div className="form-row">
                                 <div className="form-group">
