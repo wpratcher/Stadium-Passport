@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,892 +15,902 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            background: linear-gradient(135deg, #1a1f3a 0%, #0f1419 100%);
-            min-height: 100vh;
-            color: #d4af37;
-        }
+```
+    body {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        background: linear-gradient(135deg, #1a1f3a 0%, #0f1419 100%);
+        min-height: 100vh;
+        color: #d4af37;
+    }
 
-        #root {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    #root {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-        .passport-cover {
-            background: linear-gradient(145deg, #1e2847 0%, #141b2d 100%);
-            border: 3px solid #d4af37;
-            border-radius: 12px;
-            padding: 60px 40px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
-        }
+    .passport-cover {
+        background: linear-gradient(145deg, #1e2847 0%, #141b2d 100%);
+        border: 3px solid #d4af37;
+        border-radius: 12px;
+        padding: 60px 40px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+    }
 
+    .passport-title {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #d4af37;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+    }
+
+    .passport-subtitle {
+        font-size: 1.2rem;
+        color: #b8945f;
+        letter-spacing: 2px;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin: 30px 0;
+    }
+
+    .stat-card {
+        background: linear-gradient(145deg, #252d47 0%, #1a2035 100%);
+        border: 2px solid #d4af37;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #d4af37;
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: #b8945f;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .league-tabs {
+        display: flex;
+        gap: 10px;
+        margin: 30px 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .league-tab {
+        background: #1a2035;
+        border: 2px solid #d4af37;
+        color: #d4af37;
+        padding: 12px 24px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: all 0.3s;
+        letter-spacing: 1px;
+    }
+
+    .league-tab:hover {
+        background: #252d47;
+        transform: translateY(-2px);
+    }
+
+    .league-tab.active {
+        background: #d4af37;
+        color: #1a1f3a;
+    }
+
+    .button {
+        background: #d4af37;
+        color: #1a1f3a;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: all 0.3s;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .button:hover {
+        background: #f0c34b;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .button-secondary {
+        background: #1a2035;
+        color: #d4af37;
+        border: 2px solid #d4af37;
+    }
+
+    .button-secondary:hover {
+        background: #252d47;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: linear-gradient(145deg, #1e2847 0%, #141b2d 100%);
+        border: 3px solid #d4af37;
+        border-radius: 12px;
+        padding: 30px;
+        max-width: 600px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-title {
+        font-size: 2rem;
+        color: #d4af37;
+        margin-bottom: 20px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        color: #d4af37;
+        margin-bottom: 8px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+        width: 100%;
+        padding: 12px;
+        background: #0f1419;
+        border: 2px solid #d4af37;
+        border-radius: 6px;
+        color: #d4af37;
+        font-size: 1rem;
+        font-family: inherit;
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #f0c34b;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .button-group button {
+        flex: 1;
+    }
+
+    .stamps-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .stamp {
+        background: linear-gradient(145deg, #252d47 0%, #1a2035 100%);
+        border: 3px dashed #d4af37;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s;
+    }
+
+    .stamp:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
+    }
+
+    .stamp-header-clickable:hover {
+        opacity: 0.9;
+    }
+
+    .stamp-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .stamp-league {
+        background: #d4af37;
+        color: #1a1f3a;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    .stamp-visits {
+        background: #1a2035;
+        color: #d4af37;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        border: 1px solid #d4af37;
+    }
+
+    .stamp-stadium {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #d4af37;
+        margin-bottom: 8px;
+    }
+
+    .stamp-city {
+        font-size: 0.95rem;
+        color: #b8945f;
+        margin-bottom: 15px;
+    }
+
+    .stamp-game {
+        background: #0f1419;
+        border: 1px solid #d4af37;
+        border-radius: 6px;
+        padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .stamp-teams {
+        color: #d4af37;
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+
+    .stamp-score {
+        color: #f0c34b;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .stamp-date {
+        font-size: 0.85rem;
+        color: #b8945f;
+        margin-top: 5px;
+    }
+
+    .stamp-notes {
+        font-size: 0.9rem;
+        color: #9ca3af;
+        font-style: italic;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px dashed #d4af37;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #b8945f;
+    }
+
+    .empty-state-icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+    }
+
+    .empty-state-text {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        color: #d4af37;
+        margin: 30px 0 20px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+
+    @media (max-width: 600px) {
         .passport-title {
-            font-size: 3rem;
-            font-weight: bold;
-            color: #d4af37;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            letter-spacing: 3px;
-            margin-bottom: 10px;
-        }
-
-        .passport-subtitle {
-            font-size: 1.2rem;
-            color: #b8945f;
-            letter-spacing: 2px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .stat-card {
-            background: linear-gradient(145deg, #252d47 0%, #1a2035 100%);
-            border: 2px solid #d4af37;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #d4af37;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #b8945f;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .league-tabs {
-            display: flex;
-            gap: 10px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .league-tab {
-            background: #1a2035;
-            border: 2px solid #d4af37;
-            color: #d4af37;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            letter-spacing: 1px;
-        }
-
-        .league-tab:hover {
-            background: #252d47;
-            transform: translateY(-2px);
-        }
-
-        .league-tab.active {
-            background: #d4af37;
-            color: #1a1f3a;
-        }
-
-        .button {
-            background: #d4af37;
-            color: #1a1f3a;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .button:hover {
-            background: #f0c34b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        .button-secondary {
-            background: #1a2035;
-            color: #d4af37;
-            border: 2px solid #d4af37;
-        }
-
-        .button-secondary:hover {
-            background: #252d47;
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: linear-gradient(145deg, #1e2847 0%, #141b2d 100%);
-            border: 3px solid #d4af37;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-title {
             font-size: 2rem;
-            color: #d4af37;
-            margin-bottom: 20px;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-label {
-            display: block;
-            color: #d4af37;
-            margin-bottom: 8px;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 12px;
-            background: #0f1419;
-            border: 2px solid #d4af37;
-            border-radius: 6px;
-            color: #d4af37;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: #f0c34b;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
         }
 
         .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .button-group button {
-            flex: 1;
+            grid-template-columns: 1fr;
         }
 
         .stamps-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
         }
+    }
+</style>
+```
 
-        .stamp {
-            background: linear-gradient(145deg, #252d47 0%, #1a2035 100%);
-            border: 3px dashed #d4af37;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-        }
-
-        .stamp:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.2);
-        }
-
-        .stamp-header-clickable:hover {
-            opacity: 0.9;
-        }
-
-        .stamp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .stamp-league {
-            background: #d4af37;
-            color: #1a1f3a;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .stamp-visits {
-            background: #1a2035;
-            color: #d4af37;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid #d4af37;
-        }
-
-        .stamp-stadium {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #d4af37;
-            margin-bottom: 8px;
-        }
-
-        .stamp-city {
-            font-size: 0.95rem;
-            color: #b8945f;
-            margin-bottom: 15px;
-        }
-
-        .stamp-game {
-            background: #0f1419;
-            border: 1px solid #d4af37;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 10px;
-        }
-
-        .stamp-teams {
-            color: #d4af37;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-        }
-
-        .stamp-score {
-            color: #f0c34b;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .stamp-date {
-            font-size: 0.85rem;
-            color: #b8945f;
-            margin-top: 5px;
-        }
-
-        .stamp-notes {
-            font-size: 0.9rem;
-            color: #9ca3af;
-            font-style: italic;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed #d4af37;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #b8945f;
-        }
-
-        .empty-state-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-
-        .empty-state-text {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            color: #d4af37;
-            margin: 30px 0 20px;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 600px) {
-            .passport-title {
-                font-size: 2rem;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .stamps-container {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <div id="root"></div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+```
+<script type="text/babel">
+    const { useState, useEffect } = React;
 
-        // Stadium Library
-        const STADIUM_LIBRARY = {
-            MLB: [
-                { name: "Angel Stadium", city: "Anaheim", state: "CA", homeTeam: "Los Angeles Angels" },
-                { name: "Chase Field", city: "Phoenix", state: "AZ", homeTeam: "Arizona Diamondbacks" },
-                { name: "Citi Field", city: "Queens", state: "NY", homeTeam: "New York Mets" },
-                { name: "Citizens Bank Park", city: "Philadelphia", state: "PA", homeTeam: "Philadelphia Phillies" },
-                { name: "Comerica Park", city: "Detroit", state: "MI", homeTeam: "Detroit Tigers" },
-                { name: "Coors Field", city: "Denver", state: "CO", homeTeam: "Colorado Rockies" },
-                { name: "Dodger Stadium", city: "Los Angeles", state: "CA", homeTeam: "Los Angeles Dodgers" },
-                { name: "Fenway Park", city: "Boston", state: "MA", homeTeam: "Boston Red Sox" },
-                { name: "Globe Life Field", city: "Arlington", state: "TX", homeTeam: "Texas Rangers" },
-                { name: "Great American Ball Park", city: "Cincinnati", state: "OH", homeTeam: "Cincinnati Reds" },
-                { name: "Guaranteed Rate Field", city: "Chicago", state: "IL", homeTeam: "Chicago White Sox" },
-                { name: "Kauffman Stadium", city: "Kansas City", state: "MO", homeTeam: "Kansas City Royals" },
-                { name: "loanDepot park", city: "Miami", state: "FL", homeTeam: "Miami Marlins" },
-                { name: "Minute Maid Park", city: "Houston", state: "TX", homeTeam: "Houston Astros" },
-                { name: "Nationals Park", city: "Washington", state: "DC", homeTeam: "Washington Nationals" },
-                { name: "Oracle Park", city: "San Francisco", state: "CA", homeTeam: "San Francisco Giants" },
-                { name: "Oriole Park at Camden Yards", city: "Baltimore", state: "MD", homeTeam: "Baltimore Orioles" },
-                { name: "Petco Park", city: "San Diego", state: "CA", homeTeam: "San Diego Padres" },
-                { name: "PNC Park", city: "Pittsburgh", state: "PA", homeTeam: "Pittsburgh Pirates" },
-                { name: "Progressive Field", city: "Cleveland", state: "OH", homeTeam: "Cleveland Guardians" },
-                { name: "Rogers Centre", city: "Toronto", state: "ON", homeTeam: "Toronto Blue Jays" },
-                { name: "T-Mobile Park", city: "Seattle", state: "WA", homeTeam: "Seattle Mariners" },
-                { name: "Target Field", city: "Minneapolis", state: "MN", homeTeam: "Minnesota Twins" },
-                { name: "Tropicana Field", city: "St. Petersburg", state: "FL", homeTeam: "Tampa Bay Rays" },
-                { name: "Truist Park", city: "Atlanta", state: "GA", homeTeam: "Atlanta Braves" },
-                { name: "Wrigley Field", city: "Chicago", state: "IL", homeTeam: "Chicago Cubs" },
-                { name: "Yankee Stadium", city: "Bronx", state: "NY", homeTeam: "New York Yankees" },
-                { name: "Oakland Coliseum", city: "Oakland", state: "CA", homeTeam: "Oakland Athletics" },
-                { name: "Busch Stadium", city: "St. Louis", state: "MO", homeTeam: "St. Louis Cardinals" },
-                { name: "American Family Field", city: "Milwaukee", state: "WI", homeTeam: "Milwaukee Brewers" }
-            ],
-            NFL: [
-                { name: "Acrisure Stadium", city: "Pittsburgh", state: "PA", homeTeam: "Pittsburgh Steelers" },
-                { name: "Allegiant Stadium", city: "Las Vegas", state: "NV", homeTeam: "Las Vegas Raiders" },
-                { name: "Arrowhead Stadium", city: "Kansas City", state: "MO", homeTeam: "Kansas City Chiefs" },
-                { name: "AT&T Stadium", city: "Arlington", state: "TX", homeTeam: "Dallas Cowboys" },
-                { name: "Bank of America Stadium", city: "Charlotte", state: "NC", homeTeam: "Carolina Panthers" },
-                { name: "Caesars Superdome", city: "New Orleans", state: "LA", homeTeam: "New Orleans Saints" },
-                { name: "Empower Field at Mile High", city: "Denver", state: "CO", homeTeam: "Denver Broncos" },
-                { name: "EverBank Stadium", city: "Jacksonville", state: "FL", homeTeam: "Jacksonville Jaguars" },
-                { name: "FedExField", city: "Landover", state: "MD", homeTeam: "Washington Commanders" },
-                { name: "Ford Field", city: "Detroit", state: "MI", homeTeam: "Detroit Lions" },
-                { name: "Gillette Stadium", city: "Foxborough", state: "MA", homeTeam: "New England Patriots" },
-                { name: "Hard Rock Stadium", city: "Miami Gardens", state: "FL", homeTeam: "Miami Dolphins" },
-                { name: "Highmark Stadium", city: "Orchard Park", state: "NY", homeTeam: "Buffalo Bills" },
-                { name: "Lambeau Field", city: "Green Bay", state: "WI", homeTeam: "Green Bay Packers" },
-                { name: "Levi's Stadium", city: "Santa Clara", state: "CA", homeTeam: "San Francisco 49ers" },
-                { name: "Lincoln Financial Field", city: "Philadelphia", state: "PA", homeTeam: "Philadelphia Eagles" },
-                { name: "Lumen Field", city: "Seattle", state: "WA", homeTeam: "Seattle Seahawks" },
-                { name: "M&T Bank Stadium", city: "Baltimore", state: "MD", homeTeam: "Baltimore Ravens" },
-                { name: "Mercedes-Benz Stadium", city: "Atlanta", state: "GA", homeTeam: "Atlanta Falcons" },
-                { name: "MetLife Stadium", city: "East Rutherford", state: "NJ", homeTeam: "New York Giants" },
-                { name: "Nissan Stadium", city: "Nashville", state: "TN", homeTeam: "Tennessee Titans" },
-                { name: "Northwest Stadium", city: "Landover", state: "MD", homeTeam: "Washington Commanders" },
-                { name: "NRG Stadium", city: "Houston", state: "TX", homeTeam: "Houston Texans" },
-                { name: "Paycor Stadium", city: "Cincinnati", state: "OH", homeTeam: "Cincinnati Bengals" },
-                { name: "Raymond James Stadium", city: "Tampa", state: "FL", homeTeam: "Tampa Bay Buccaneers" },
-                { name: "SoFi Stadium", city: "Inglewood", state: "CA", homeTeam: "Los Angeles Rams" },
-                { name: "Soldier Field", city: "Chicago", state: "IL", homeTeam: "Chicago Bears" },
-                { name: "State Farm Stadium", city: "Glendale", state: "AZ", homeTeam: "Arizona Cardinals" },
-                { name: "U.S. Bank Stadium", city: "Minneapolis", state: "MN", homeTeam: "Minnesota Vikings" },
-                { name: "Tottenham Hotspur Stadium", city: "London", state: "UK", homeTeam: "" },
-                { name: "Wembley Stadium", city: "London", state: "UK", homeTeam: "" }
-            ],
-            NBA: [
-                { name: "Barclays Center", city: "Brooklyn", state: "NY", homeTeam: "Brooklyn Nets" },
-                { name: "Capital One Arena", city: "Washington", state: "DC", homeTeam: "Washington Wizards" },
-                { name: "Chase Center", city: "San Francisco", state: "CA", homeTeam: "Golden State Warriors" },
-                { name: "Crypto.com Arena", city: "Los Angeles", state: "CA", homeTeam: "Los Angeles Lakers" },
-                { name: "Delta Center", city: "Salt Lake City", state: "UT", homeTeam: "Utah Jazz" },
-                { name: "Fiserv Forum", city: "Milwaukee", state: "WI", homeTeam: "Milwaukee Bucks" },
-                { name: "Footprint Center", city: "Phoenix", state: "AZ", homeTeam: "Phoenix Suns" },
-                { name: "FedExForum", city: "Memphis", state: "TN", homeTeam: "Memphis Grizzlies" },
-                { name: "Frost Bank Center", city: "San Antonio", state: "TX", homeTeam: "San Antonio Spurs" },
-                { name: "Gainbridge Fieldhouse", city: "Indianapolis", state: "IN", homeTeam: "Indiana Pacers" },
-                { name: "Golden 1 Center", city: "Sacramento", state: "CA", homeTeam: "Sacramento Kings" },
-                { name: "Intuit Dome", city: "Inglewood", state: "CA", homeTeam: "Los Angeles Clippers" },
-                { name: "Kaseya Center", city: "Miami", state: "FL", homeTeam: "Miami Heat" },
-                { name: "Little Caesars Arena", city: "Detroit", state: "MI", homeTeam: "Detroit Pistons" },
-                { name: "Madison Square Garden", city: "New York", state: "NY", homeTeam: "New York Knicks" },
-                { name: "Moda Center", city: "Portland", state: "OR", homeTeam: "Portland Trail Blazers" },
-                { name: "Moody Center", city: "Austin", state: "TX", homeTeam: "" },
-                { name: "Paycom Center", city: "Oklahoma City", state: "OK", homeTeam: "Oklahoma City Thunder" },
-                { name: "Rocket Mortgage FieldHouse", city: "Cleveland", state: "OH", homeTeam: "Cleveland Cavaliers" },
-                { name: "Scotiabank Arena", city: "Toronto", state: "ON", homeTeam: "Toronto Raptors" },
-                { name: "Smoothie King Center", city: "New Orleans", state: "LA", homeTeam: "New Orleans Pelicans" },
-                { name: "Spectrum Center", city: "Charlotte", state: "NC", homeTeam: "Charlotte Hornets" },
-                { name: "State Farm Arena", city: "Atlanta", state: "GA", homeTeam: "Atlanta Hawks" },
-                { name: "Target Center", city: "Minneapolis", state: "MN", homeTeam: "Minnesota Timberwolves" },
-                { name: "TD Garden", city: "Boston", state: "MA", homeTeam: "Boston Celtics" },
-                { name: "Toyota Center", city: "Houston", state: "TX", homeTeam: "Houston Rockets" },
-                { name: "United Center", city: "Chicago", state: "IL", homeTeam: "Chicago Bulls" },
-                { name: "Wells Fargo Center", city: "Philadelphia", state: "PA", homeTeam: "Philadelphia 76ers" },
-                { name: "Ball Arena", city: "Denver", state: "CO", homeTeam: "Denver Nuggets" },
-                { name: "Amway Center", city: "Orlando", state: "FL", homeTeam: "Orlando Magic" }
-            ],
-            MLS: [
-                { name: "Audi Field", city: "Washington", state: "DC", homeTeam: "D.C. United" },
-                { name: "Bank of America Stadium", city: "Charlotte", state: "NC", homeTeam: "Charlotte FC" },
-                { name: "BC Place", city: "Vancouver", state: "BC", homeTeam: "Vancouver Whitecaps FC" },
-                { name: "BMO Field", city: "Toronto", state: "ON", homeTeam: "Toronto FC" },
-                { name: "BMO Stadium", city: "Los Angeles", state: "CA", homeTeam: "Los Angeles FC" },
-                { name: "Chase Stadium", city: "Fort Lauderdale", state: "FL", homeTeam: "Inter Miami CF" },
-                { name: "Children's Mercy Park", city: "Kansas City", state: "KS", homeTeam: "Sporting Kansas City" },
-                { name: "CITYPARK", city: "St. Louis", state: "MO", homeTeam: "St. Louis City SC" },
-                { name: "Dick's Sporting Goods Park", city: "Commerce City", state: "CO", homeTeam: "Colorado Rapids" },
-                { name: "Exploria Stadium", city: "Orlando", state: "FL", homeTeam: "Orlando City SC" },
-                { name: "Field", city: "Columbus", state: "OH", homeTeam: "Columbus Crew" },
-                { name: "Geodis Park", city: "Nashville", state: "TN", homeTeam: "Nashville SC" },
-                { name: "Gillette Stadium", city: "Foxborough", state: "MA", homeTeam: "New England Revolution" },
-                { name: "History Miami Stadium", city: "Miami", state: "FL", homeTeam: "Inter Miami CF" },
-                { name: "Lower.com Field", city: "Columbus", state: "OH", homeTeam: "Columbus Crew" },
-                { name: "Lumen Field", city: "Seattle", state: "WA", homeTeam: "Seattle Sounders FC" },
-                { name: "Mercedes-Benz Stadium", city: "Atlanta", state: "GA", homeTeam: "Atlanta United FC" },
-                { name: "PayPal Park", city: "San Jose", state: "CA", homeTeam: "San Jose Earthquakes" },
-                { name: "Providence Park", city: "Portland", state: "OR", homeTeam: "Portland Timbers" },
-                { name: "Q2 Stadium", city: "Austin", state: "TX", homeTeam: "Austin FC" },
-                { name: "Red Bull Arena", city: "Harrison", state: "NJ", homeTeam: "New York Red Bulls" },
-                { name: "Rio Tinto Stadium", city: "Sandy", state: "UT", homeTeam: "Real Salt Lake" },
-                { name: "Saputo Stadium", city: "Montreal", state: "QC", homeTeam: "CF Montréal" },
-                { name: "Shell Energy Stadium", city: "Houston", state: "TX", homeTeam: "Houston Dynamo FC" },
-                { name: "Snapdragon Stadium", city: "San Diego", state: "CA", homeTeam: "San Diego FC" },
-                { name: "SoFi Stadium", city: "Inglewood", state: "CA", homeTeam: "" },
-                { name: "Subaru Park", city: "Chester", state: "PA", homeTeam: "Philadelphia Union" },
-                { name: "TQL Stadium", city: "Cincinnati", state: "OH", homeTeam: "FC Cincinnati" },
-                { name: "Toyota Stadium", city: "Frisco", state: "TX", homeTeam: "FC Dallas" },
-                { name: "Yankee Stadium", city: "Bronx", state: "NY", homeTeam: "New York City FC" }
-            ],
-            NHL: [
-                { name: "Amalie Arena", city: "Tampa", state: "FL", homeTeam: "Tampa Bay Lightning" },
-                { name: "American Airlines Center", city: "Dallas", state: "TX", homeTeam: "Dallas Stars" },
-                { name: "Ball Arena", city: "Denver", state: "CO", homeTeam: "Colorado Avalanche" },
-                { name: "Bridgestone Arena", city: "Nashville", state: "TN", homeTeam: "Nashville Predators" },
-                { name: "Canada Life Centre", city: "Winnipeg", state: "MB", homeTeam: "Winnipeg Jets" },
-                { name: "Canadian Tire Centre", city: "Ottawa", state: "ON", homeTeam: "Ottawa Senators" },
-                { name: "Capital One Arena", city: "Washington", state: "DC", homeTeam: "Washington Capitals" },
-                { name: "Climate Pledge Arena", city: "Seattle", state: "WA", homeTeam: "Seattle Kraken" },
-                { name: "Delta Center", city: "Salt Lake City", state: "UT", homeTeam: "Utah Hockey Club" },
-                { name: "Enterprise Center", city: "St. Louis", state: "MO", homeTeam: "St. Louis Blues" },
-                { name: "FLA Live Arena", city: "Sunrise", state: "FL", homeTeam: "Florida Panthers" },
-                { name: "KeyBank Center", city: "Buffalo", state: "NY", homeTeam: "Buffalo Sabres" },
-                { name: "Lenovo Center", city: "Raleigh", state: "NC", homeTeam: "Carolina Hurricanes" },
-                { name: "Little Caesars Arena", city: "Detroit", state: "MI", homeTeam: "Detroit Red Wings" },
-                { name: "Madison Square Garden", city: "New York", state: "NY", homeTeam: "New York Rangers" },
-                { name: "Mullett Arena", city: "Tempe", state: "AZ", homeTeam: "Arizona Coyotes" },
-                { name: "Nationwide Arena", city: "Columbus", state: "OH", homeTeam: "Columbus Blue Jackets" },
-                { name: "PPG Paints Arena", city: "Pittsburgh", state: "PA", homeTeam: "Pittsburgh Penguins" },
-                { name: "Prudential Center", city: "Newark", state: "NJ", homeTeam: "New Jersey Devils" },
-                { name: "Rogers Arena", city: "Vancouver", state: "BC", homeTeam: "Vancouver Canucks" },
-                { name: "Rogers Place", city: "Edmonton", state: "AB", homeTeam: "Edmonton Oilers" },
-                { name: "SAP Center", city: "San Jose", state: "CA", homeTeam: "San Jose Sharks" },
-                { name: "Scotiabank Arena", city: "Toronto", state: "ON", homeTeam: "Toronto Maple Leafs" },
-                { name: "T-Mobile Arena", city: "Las Vegas", state: "NV", homeTeam: "Vegas Golden Knights" },
-                { name: "TD Garden", city: "Boston", state: "MA", homeTeam: "Boston Bruins" },
-                { name: "UBS Arena", city: "Elmont", state: "NY", homeTeam: "New York Islanders" },
-                { name: "United Center", city: "Chicago", state: "IL", homeTeam: "Chicago Blackhawks" },
-                { name: "Wells Fargo Center", city: "Philadelphia", state: "PA", homeTeam: "Philadelphia Flyers" },
-                { name: "Xcel Energy Center", city: "St. Paul", state: "MN", homeTeam: "Minnesota Wild" },
-                { name: "Crypto.com Arena", city: "Los Angeles", state: "CA", homeTeam: "Los Angeles Kings" },
-                { name: "Honda Center", city: "Anaheim", state: "CA", homeTeam: "Anaheim Ducks" },
-                { name: "Scotiabank Saddledome", city: "Calgary", state: "AB", homeTeam: "Calgary Flames" }
-            ]
-        };
+    // Stadium Library
+    const STADIUM_LIBRARY = {
+        MLB: [
+            { name: "Angel Stadium", city: "Anaheim", state: "CA", homeTeam: ["Los Angeles Angels"] },
+            { name: "Chase Field", city: "Phoenix", state: "AZ", homeTeam: ["Arizona Diamondbacks"] },
+            { name: "Citi Field", city: "Queens", state: "NY", homeTeam: ["New York Mets"] },
+            { name: "Citizens Bank Park", city: "Philadelphia", state: "PA", homeTeam: ["Philadelphia Phillies"] },
+            { name: "Comerica Park", city: "Detroit", state: "MI", homeTeam: ["Detroit Tigers"] },
+            { name: "Coors Field", city: "Denver", state: "CO", homeTeam: ["Colorado Rockies"] },
+            { name: "Dodger Stadium", city: "Los Angeles", state: "CA", homeTeam: ["Los Angeles Dodgers"] },
+            { name: "Fenway Park", city: "Boston", state: "MA", homeTeam: ["Boston Red Sox"] },
+            { name: "Globe Life Field", city: "Arlington", state: "TX", homeTeam: ["Texas Rangers"] },
+            { name: "Great American Ball Park", city: "Cincinnati", state: "OH", homeTeam: ["Cincinnati Reds"] },
+            { name: "Guaranteed Rate Field", city: "Chicago", state: "IL", homeTeam: ["Chicago White Sox"] },
+            { name: "Kauffman Stadium", city: "Kansas City", state: "MO", homeTeam: ["Kansas City Royals"] },
+            { name: "loanDepot park", city: "Miami", state: "FL", homeTeam: ["Miami Marlins"] },
+            { name: "Minute Maid Park", city: "Houston", state: "TX", homeTeam: ["Houston Astros"] },
+            { name: "Nationals Park", city: "Washington", state: "DC", homeTeam: ["Washington Nationals"] },
+            { name: "Oracle Park", city: "San Francisco", state: "CA", homeTeam: ["San Francisco Giants"] },
+            { name: "Oriole Park at Camden Yards", city: "Baltimore", state: "MD", homeTeam: ["Baltimore Orioles"] },
+            { name: "Petco Park", city: "San Diego", state: "CA", homeTeam: ["San Diego Padres"] },
+            { name: "PNC Park", city: "Pittsburgh", state: "PA", homeTeam: ["Pittsburgh Pirates"] },
+            { name: "Progressive Field", city: "Cleveland", state: "OH", homeTeam: ["Cleveland Guardians"] },
+            { name: "Rogers Centre", city: "Toronto", state: "ON", homeTeam: ["Toronto Blue Jays"] },
+            { name: "T-Mobile Park", city: "Seattle", state: "WA", homeTeam: ["Seattle Mariners"] },
+            { name: "Target Field", city: "Minneapolis", state: "MN", homeTeam: ["Minnesota Twins"] },
+            { name: "Tropicana Field", city: "St. Petersburg", state: "FL", homeTeam: ["Tampa Bay Rays"] },
+            { name: "Truist Park", city: "Atlanta", state: "GA", homeTeam: ["Atlanta Braves"] },
+            { name: "Wrigley Field", city: "Chicago", state: "IL", homeTeam: ["Chicago Cubs"] },
+            { name: "Yankee Stadium", city: "Bronx", state: "NY", homeTeam: ["New York Yankees"] },
+            { name: "Oakland Coliseum", city: "Oakland", state: "CA", homeTeam: ["Oakland Athletics"] },
+            { name: "Busch Stadium", city: "St. Louis", state: "MO", homeTeam: ["St. Louis Cardinals"] },
+            { name: "American Family Field", city: "Milwaukee", state: "WI", homeTeam: ["Milwaukee Brewers"] }
+        ],
+        NFL: [
+            { name: "Acrisure Stadium", city: "Pittsburgh", state: "PA", homeTeam: ["Pittsburgh Steelers"] },
+            { name: "Allegiant Stadium", city: "Las Vegas", state: "NV", homeTeam: ["Las Vegas Raiders"] },
+            { name: "Arrowhead Stadium", city: "Kansas City", state: "MO", homeTeam: ["Kansas City Chiefs"] },
+            { name: "AT&T Stadium", city: "Arlington", state: "TX", homeTeam: ["Dallas Cowboys"] },
+            { name: "Bank of America Stadium", city: "Charlotte", state: "NC", homeTeam: ["Carolina Panthers"] },
+            { name: "Caesars Superdome", city: "New Orleans", state: "LA", homeTeam: ["New Orleans Saints"] },
+            { name: "Empower Field at Mile High", city: "Denver", state: "CO", homeTeam: ["Denver Broncos"] },
+            { name: "EverBank Stadium", city: "Jacksonville", state: "FL", homeTeam: ["Jacksonville Jaguars"] },
+            { name: "FedExField", city: "Landover", state: "MD", homeTeam: ["Washington Commanders"] },
+            { name: "Ford Field", city: "Detroit", state: "MI", homeTeam: ["Detroit Lions"] },
+            { name: "Gillette Stadium", city: "Foxborough", state: "MA", homeTeam: ["New England Patriots"] },
+            { name: "Hard Rock Stadium", city: "Miami Gardens", state: "FL", homeTeam: ["Miami Dolphins"] },
+            { name: "Highmark Stadium", city: "Orchard Park", state: "NY", homeTeam: ["Buffalo Bills"] },
+            { name: "Lambeau Field", city: "Green Bay", state: "WI", homeTeam: ["Green Bay Packers"] },
+            { name: "Levi's Stadium", city: "Santa Clara", state: "CA", homeTeam: ["San Francisco 49ers"] },
+            { name: "Lincoln Financial Field", city: "Philadelphia", state: "PA", homeTeam: ["Philadelphia Eagles"] },
+            { name: "Lumen Field", city: "Seattle", state: "WA", homeTeam: ["Seattle Seahawks"] },
+            { name: "M&T Bank Stadium", city: "Baltimore", state: "MD", homeTeam: ["Baltimore Ravens"] },
+            { name: "Mercedes-Benz Stadium", city: "Atlanta", state: "GA", homeTeam: ["Atlanta Falcons"] },
+            { name: "MetLife Stadium", city: "East Rutherford", state: "NJ", homeTeam: ["New York Giants", "New York Jets"] },
+            { name: "Nissan Stadium", city: "Nashville", state: "TN", homeTeam: ["Tennessee Titans"] },
+            { name: "Northwest Stadium", city: "Landover", state: "MD", homeTeam: ["Washington Commanders"] },
+            { name: "NRG Stadium", city: "Houston", state: "TX", homeTeam: ["Houston Texans"] },
+            { name: "Paycor Stadium", city: "Cincinnati", state: "OH", homeTeam: ["Cincinnati Bengals"] },
+            { name: "Raymond James Stadium", city: "Tampa", state: "FL", homeTeam: ["Tampa Bay Buccaneers"] },
+            { name: "SoFi Stadium", city: "Inglewood", state: "CA", homeTeam: ["Los Angeles Rams", "Los Angeles Chargers"] },
+            { name: "Soldier Field", city: "Chicago", state: "IL", homeTeam: ["Chicago Bears"] },
+            { name: "State Farm Stadium", city: "Glendale", state: "AZ", homeTeam: ["Arizona Cardinals"] },
+            { name: "U.S. Bank Stadium", city: "Minneapolis", state: "MN", homeTeam: ["Minnesota Vikings"] },
+            { name: "Tottenham Hotspur Stadium", city: "London", state: "UK", homeTeam: [] },
+            { name: "Wembley Stadium", city: "London", state: "UK", homeTeam: [] }
+        ],
+        NBA: [
+            { name: "Barclays Center", city: "Brooklyn", state: "NY", homeTeam: ["Brooklyn Nets"] },
+            { name: "Capital One Arena", city: "Washington", state: "DC", homeTeam: ["Washington Wizards"] },
+            { name: "Chase Center", city: "San Francisco", state: "CA", homeTeam: ["Golden State Warriors"] },
+            { name: "Crypto.com Arena", city: "Los Angeles", state: "CA", homeTeam: ["Los Angeles Lakers", "Los Angeles Clippers"] },
+            { name: "Delta Center", city: "Salt Lake City", state: "UT", homeTeam: ["Utah Jazz"] },
+            { name: "Fiserv Forum", city: "Milwaukee", state: "WI", homeTeam: ["Milwaukee Bucks"] },
+            { name: "Footprint Center", city: "Phoenix", state: "AZ", homeTeam: ["Phoenix Suns"] },
+            { name: "FedExForum", city: "Memphis", state: "TN", homeTeam: ["Memphis Grizzlies"] },
+            { name: "Frost Bank Center", city: "San Antonio", state: "TX", homeTeam: ["San Antonio Spurs"] },
+            { name: "Gainbridge Fieldhouse", city: "Indianapolis", state: "IN", homeTeam: ["Indiana Pacers"] },
+            { name: "Golden 1 Center", city: "Sacramento", state: "CA", homeTeam: ["Sacramento Kings"] },
+            { name: "Intuit Dome", city: "Inglewood", state: "CA", homeTeam: ["Los Angeles Clippers"] },
+            { name: "Kaseya Center", city: "Miami", state: "FL", homeTeam: ["Miami Heat"] },
+            { name: "Little Caesars Arena", city: "Detroit", state: "MI", homeTeam: ["Detroit Pistons"] },
+            { name: "Madison Square Garden", city: "New York", state: "NY", homeTeam: ["New York Knicks"] },
+            { name: "Moda Center", city: "Portland", state: "OR", homeTeam: ["Portland Trail Blazers"] },
+            { name: "Moody Center", city: "Austin", state: "TX", homeTeam: [] },
+            { name: "Paycom Center", city: "Oklahoma City", state: "OK", homeTeam: ["Oklahoma City Thunder"] },
+            { name: "Rocket Mortgage FieldHouse", city: "Cleveland", state: "OH", homeTeam: ["Cleveland Cavaliers"] },
+            { name: "Scotiabank Arena", city: "Toronto", state: "ON", homeTeam: ["Toronto Raptors"] },
+            { name: "Smoothie King Center", city: "New Orleans", state: "LA", homeTeam: ["New Orleans Pelicans"] },
+            { name: "Spectrum Center", city: "Charlotte", state: "NC", homeTeam: ["Charlotte Hornets"] },
+            { name: "State Farm Arena", city: "Atlanta", state: "GA", homeTeam: ["Atlanta Hawks"] },
+            { name: "Target Center", city: "Minneapolis", state: "MN", homeTeam: ["Minnesota Timberwolves"] },
+            { name: "TD Garden", city: "Boston", state: "MA", homeTeam: ["Boston Celtics"] },
+            { name: "Toyota Center", city: "Houston", state: "TX", homeTeam: ["Houston Rockets"] },
+            { name: "United Center", city: "Chicago", state: "IL", homeTeam: ["Chicago Bulls"] },
+            { name: "Wells Fargo Center", city: "Philadelphia", state: "PA", homeTeam: ["Philadelphia 76ers"] },
+            { name: "Ball Arena", city: "Denver", state: "CO", homeTeam: ["Denver Nuggets"] },
+            { name: "Amway Center", city: "Orlando", state: "FL", homeTeam: ["Orlando Magic"] }
+        ],
+        MLS: [
+            { name: "Audi Field", city: "Washington", state: "DC", homeTeam: ["D.C. United"] },
+            { name: "Bank of America Stadium", city: "Charlotte", state: "NC", homeTeam: ["Charlotte FC"] },
+            { name: "BC Place", city: "Vancouver", state: "BC", homeTeam: ["Vancouver Whitecaps FC"] },
+            { name: "BMO Field", city: "Toronto", state: "ON", homeTeam: ["Toronto FC"] },
+            { name: "BMO Stadium", city: "Los Angeles", state: "CA", homeTeam: ["Los Angeles FC"] },
+            { name: "Chase Stadium", city: "Fort Lauderdale", state: "FL", homeTeam: ["Inter Miami CF"] },
+            { name: "Children's Mercy Park", city: "Kansas City", state: "KS", homeTeam: ["Sporting Kansas City"] },
+            { name: "CITYPARK", city: "St. Louis", state: "MO", homeTeam: ["St. Louis City SC"] },
+            { name: "Dick's Sporting Goods Park", city: "Commerce City", state: "CO", homeTeam: ["Colorado Rapids"] },
+            { name: "Exploria Stadium", city: "Orlando", state: "FL", homeTeam: ["Orlando City SC"] },
+            { name: "Field", city: "Columbus", state: "OH", homeTeam: ["Columbus Crew"] },
+            { name: "Geodis Park", city: "Nashville", state: "TN", homeTeam: ["Nashville SC"] },
+            { name: "Gillette Stadium", city: "Foxborough", state: "MA", homeTeam: ["New England Revolution"] },
+            { name: "History Miami Stadium", city: "Miami", state: "FL", homeTeam: ["Inter Miami CF"] },
+            { name: "Lower.com Field", city: "Columbus", state: "OH", homeTeam: ["Columbus Crew"] },
+            { name: "Lumen Field", city: "Seattle", state: "WA", homeTeam: ["Seattle Sounders FC"] },
+            { name: "Mercedes-Benz Stadium", city: "Atlanta", state: "GA", homeTeam: ["Atlanta United FC"] },
+            { name: "PayPal Park", city: "San Jose", state: "CA", homeTeam: ["San Jose Earthquakes"] },
+            { name: "Providence Park", city: "Portland", state: "OR", homeTeam: ["Portland Timbers"] },
+            { name: "Q2 Stadium", city: "Austin", state: "TX", homeTeam: ["Austin FC"] },
+            { name: "Red Bull Arena", city: "Harrison", state: "NJ", homeTeam: ["New York Red Bulls"] },
+            { name: "Rio Tinto Stadium", city: "Sandy", state: "UT", homeTeam: ["Real Salt Lake"] },
+            { name: "Saputo Stadium", city: "Montreal", state: "QC", homeTeam: ["CF Montréal"] },
+            { name: "Shell Energy Stadium", city: "Houston", state: "TX", homeTeam: ["Houston Dynamo FC"] },
+            { name: "Snapdragon Stadium", city: "San Diego", state: "CA", homeTeam: ["San Diego FC"] },
+            { name: "SoFi Stadium", city: "Inglewood", state: "CA", homeTeam: [] },
+            { name: "Subaru Park", city: "Chester", state: "PA", homeTeam: ["Philadelphia Union"] },
+            { name: "TQL Stadium", city: "Cincinnati", state: "OH", homeTeam: ["FC Cincinnati"] },
+            { name: "Toyota Stadium", city: "Frisco", state: "TX", homeTeam: ["FC Dallas"] },
+            { name: "Yankee Stadium", city: "Bronx", state: "NY", homeTeam: ["New York City FC"] }
+        ],
+        NHL: [
+            { name: "Amalie Arena", city: "Tampa", state: "FL", homeTeam: ["Tampa Bay Lightning"] },
+            { name: "American Airlines Center", city: "Dallas", state: "TX", homeTeam: ["Dallas Stars"] },
+            { name: "Ball Arena", city: "Denver", state: "CO", homeTeam: ["Colorado Avalanche"] },
+            { name: "Bridgestone Arena", city: "Nashville", state: "TN", homeTeam: ["Nashville Predators"] },
+            { name: "Canada Life Centre", city: "Winnipeg", state: "MB", homeTeam: ["Winnipeg Jets"] },
+            { name: "Canadian Tire Centre", city: "Ottawa", state: "ON", homeTeam: ["Ottawa Senators"] },
+            { name: "Capital One Arena", city: "Washington", state: "DC", homeTeam: ["Washington Capitals"] },
+            { name: "Climate Pledge Arena", city: "Seattle", state: "WA", homeTeam: ["Seattle Kraken"] },
+            { name: "Delta Center", city: "Salt Lake City", state: "UT", homeTeam: ["Utah Hockey Club"] },
+            { name: "Enterprise Center", city: "St. Louis", state: "MO", homeTeam: ["St. Louis Blues"] },
+            { name: "FLA Live Arena", city: "Sunrise", state: "FL", homeTeam: ["Florida Panthers"] },
+            { name: "KeyBank Center", city: "Buffalo", state: "NY", homeTeam: ["Buffalo Sabres"] },
+            { name: "Lenovo Center", city: "Raleigh", state: "NC", homeTeam: ["Carolina Hurricanes"] },
+            { name: "Little Caesars Arena", city: "Detroit", state: "MI", homeTeam: ["Detroit Red Wings"] },
+            { name: "Madison Square Garden", city: "New York", state: "NY", homeTeam: ["New York Rangers"] },
+            { name: "Mullett Arena", city: "Tempe", state: "AZ", homeTeam: ["Arizona Coyotes"] },
+            { name: "Nationwide Arena", city: "Columbus", state: "OH", homeTeam: ["Columbus Blue Jackets"] },
+            { name: "PPG Paints Arena", city: "Pittsburgh", state: "PA", homeTeam: ["Pittsburgh Penguins"] },
+            { name: "Prudential Center", city: "Newark", state: "NJ", homeTeam: ["New Jersey Devils"] },
+            { name: "Rogers Arena", city: "Vancouver", state: "BC", homeTeam: ["Vancouver Canucks"] },
+            { name: "Rogers Place", city: "Edmonton", state: "AB", homeTeam: ["Edmonton Oilers"] },
+            { name: "SAP Center", city: "San Jose", state: "CA", homeTeam: ["San Jose Sharks"] },
+            { name: "Scotiabank Arena", city: "Toronto", state: "ON", homeTeam: ["Toronto Maple Leafs"] },
+            { name: "T-Mobile Arena", city: "Las Vegas", state: "NV", homeTeam: ["Vegas Golden Knights"] },
+            { name: "TD Garden", city: "Boston", state: "MA", homeTeam: ["Boston Bruins"] },
+            { name: "UBS Arena", city: "Elmont", state: "NY", homeTeam: ["New York Islanders"] },
+            { name: "United Center", city: "Chicago", state: "IL", homeTeam: ["Chicago Blackhawks"] },
+            { name: "Wells Fargo Center", city: "Philadelphia", state: "PA", homeTeam: ["Philadelphia Flyers"] },
+            { name: "Xcel Energy Center", city: "St. Paul", state: "MN", homeTeam: ["Minnesota Wild"] },
+            { name: "Crypto.com Arena", city: "Los Angeles", state: "CA", homeTeam: ["Los Angeles Kings"] },
+            { name: "Honda Center", city: "Anaheim", state: "CA", homeTeam: ["Anaheim Ducks"] },
+            { name: "Scotiabank Saddledome", city: "Calgary", state: "AB", homeTeam: ["Calgary Flames"] }
+        ]
+    };
 
-        function StadiumPassport() {
-            const [view, setView] = useState('home');
-            const [activeLeague, setActiveLeague] = useState('ALL');
-            const [showAddGameModal, setShowAddGameModal] = useState(false);
-            const [games, setGames] = useState([]);
-            const [stadiums, setStadiums] = useState([]);
-            const [expandedStadium, setExpandedStadium] = useState(null);
+    function StadiumPassport() {
+        const [view, setView] = useState('home');
+        const [activeLeague, setActiveLeague] = useState('ALL');
+        const [showAddGameModal, setShowAddGameModal] = useState(false);
+        const [games, setGames] = useState([]);
+        const [stadiums, setStadiums] = useState([]);
+        const [expandedStadium, setExpandedStadium] = useState(null);
 
-            const leagues = ['ALL', 'MLB', 'NFL', 'NBA', 'MLS', 'NHL'];
+        const leagues = ['ALL', 'MLB', 'NFL', 'NBA', 'MLS', 'NHL'];
 
-            // Load data from localStorage on mount
-            useEffect(() => {
-                const savedGames = localStorage.getItem('stadiumPassportGames');
-                const savedStadiums = localStorage.getItem('stadiumPassportStadiums');
-                
-                if (savedGames) setGames(JSON.parse(savedGames));
-                if (savedStadiums) setStadiums(JSON.parse(savedStadiums));
-            }, []);
+        // Load data from localStorage on mount
+        useEffect(() => {
+            const savedGames = localStorage.getItem('stadiumPassportGames');
+            const savedStadiums = localStorage.getItem('stadiumPassportStadiums');
+            
+            if (savedGames) setGames(JSON.parse(savedGames));
+            if (savedStadiums) setStadiums(JSON.parse(savedStadiums));
+        }, []);
 
-            // Save data to localStorage whenever it changes
-            useEffect(() => {
-                localStorage.setItem('stadiumPassportGames', JSON.stringify(games));
-            }, [games]);
+        // Save data to localStorage whenever it changes
+        useEffect(() => {
+            localStorage.setItem('stadiumPassportGames', JSON.stringify(games));
+        }, [games]);
 
-            useEffect(() => {
-                localStorage.setItem('stadiumPassportStadiums', JSON.stringify(stadiums));
-            }, [stadiums]);
+        useEffect(() => {
+            localStorage.setItem('stadiumPassportStadiums', JSON.stringify(stadiums));
+        }, [stadiums]);
 
-            const addGame = (gameData) => {
-                // Check if stadium exists
-                const existingStadium = stadiums.find(
-                    s => s.name.toLowerCase() === gameData.stadium.toLowerCase() && 
-                    s.league === gameData.league
-                );
+        const addGame = (gameData) => {
+            // Check if stadium exists
+            const existingStadium = stadiums.find(
+                s => s.name.toLowerCase() === gameData.stadium.toLowerCase() && 
+                s.league === gameData.league
+            );
 
-                if (existingStadium) {
-                    // Increment visit count
-                    setStadiums(stadiums.map(s => 
-                        s.name.toLowerCase() === gameData.stadium.toLowerCase() && s.league === gameData.league
-                            ? { ...s, visitCount: s.visitCount + 1 }
-                            : s
-                    ));
-                } else {
-                    // Create new stadium
-                    const newStadium = {
-                        name: gameData.stadium,
-                        league: gameData.league,
-                        city: gameData.city,
-                        firstVisit: gameData.date,
-                        visitCount: 1
-                    };
-                    setStadiums([...stadiums, newStadium]);
-                }
-
-                // Add game
-                const newGame = {
-                    id: Date.now(),
-                    ...gameData
+            if (existingStadium) {
+                // Increment visit count
+                setStadiums(stadiums.map(s => 
+                    s.name.toLowerCase() === gameData.stadium.toLowerCase() && s.league === gameData.league
+                        ? { ...s, visitCount: s.visitCount + 1 }
+                        : s
+                ));
+            } else {
+                // Create new stadium
+                const newStadium = {
+                    name: gameData.stadium,
+                    league: gameData.league,
+                    city: gameData.city,
+                    firstVisit: gameData.date,
+                    visitCount: 1
                 };
-                setGames([newGame, ...games]);
-                setShowAddGameModal(false);
-            };
-
-            const getStats = () => {
-                const totalStadiums = stadiums.length;
-                const totalGames = games.length;
-                
-                const leagueBreakdown = {};
-                leagues.slice(1).forEach(league => {
-                    leagueBreakdown[league] = {
-                        stadiums: stadiums.filter(s => s.league === league).length,
-                        games: games.filter(g => g.league === league).length
-                    };
-                });
-
-                return { totalStadiums, totalGames, leagueBreakdown };
-            };
-
-            const stats = getStats();
-
-            const filteredGames = activeLeague === 'ALL' 
-                ? games 
-                : games.filter(g => g.league === activeLeague);
-
-            const filteredStadiums = activeLeague === 'ALL'
-                ? stadiums
-                : stadiums.filter(s => s.league === activeLeague);
-
-            if (view === 'home') {
-                return (
-                    <div>
-                        <div className="passport-cover">
-                            <div className="passport-title">STADIUM PASSPORT</div>
-                            <div className="passport-subtitle">Your Journey Through Sports</div>
-                        </div>
-
-                        <div className="stats-grid">
-                            <div className="stat-card">
-                                <div className="stat-number">{stats.totalStadiums}</div>
-                                <div className="stat-label">Total Stadiums</div>
-                            </div>
-                            <div className="stat-card">
-                                <div className="stat-number">{stats.totalGames}</div>
-                                <div className="stat-label">Total Games</div>
-                            </div>
-                        </div>
-
-                        <div className="section-title" style={{ marginTop: '40px' }}>BY LEAGUE</div>
-                        <div className="stats-grid">
-                            {leagues.slice(1).map(league => (
-                                <div 
-                                    key={league} 
-                                    className="stat-card" 
-                                    onClick={() => {
-                                        setActiveLeague(league);
-                                        setView('stamps');
-                                    }}
-                                    style={{ cursor: 'pointer', transition: 'all 0.3s' }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(-4px)';
-                                        e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.3)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
-                                    }}
-                                >
-                                    <div className="stat-label">{league}</div>
-                                    <div style={{ color: '#d4af37', fontSize: '1.2rem', marginTop: '10px' }}>
-                                        {stats.leagueBreakdown[league].stadiums} stadiums
-                                    </div>
-                                    <div style={{ color: '#b8945f', fontSize: '0.9rem' }}>
-                                        {stats.leagueBreakdown[league].games} games
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        <div style={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
-                            <button className="button" style={{ flex: 1 }} onClick={() => setShowAddGameModal(true)}>
-                                + Log New Game
-                            </button>
-                            <button className="button-secondary button" style={{ flex: 1 }} onClick={() => setView('stamps')}>
-                                View All Stamps
-                            </button>
-                        </div>
-
-                        {showAddGameModal && <AddGameModal onClose={() => setShowAddGameModal(false)} onSave={addGame} />}
-                    </div>
-                );
+                setStadiums([...stadiums, newStadium]);
             }
 
-            if (view === 'stamps') {
-                return (
-                    <div>
-                        <div className="passport-cover">
-                            <div className="passport-title">YOUR STAMPS</div>
-                        </div>
+            // Add game
+            const newGame = {
+                id: Date.now(),
+                ...gameData
+            };
+            setGames([newGame, ...games]);
+            setShowAddGameModal(false);
+        };
 
-                        <button className="button-secondary button" onClick={() => setView('home')}>
-                            ← Back to Home
-                        </button>
+        const getStats = () => {
+            const totalStadiums = stadiums.length;
+            const totalGames = games.length;
+            
+            const leagueBreakdown = {};
+            leagues.slice(1).forEach(league => {
+                leagueBreakdown[league] = {
+                    stadiums: stadiums.filter(s => s.league === league).length,
+                    games: games.filter(g => g.league === league).length
+                };
+            });
 
-                        <div className="league-tabs">
-                            {leagues.map(league => (
-                                <button
-                                    key={league}
-                                    className={`league-tab ${activeLeague === league ? 'active' : ''}`}
-                                    onClick={() => setActiveLeague(league)}
-                                >
-                                    {league}
-                                </button>
-                            ))}
-                        </div>
+            return { totalStadiums, totalGames, leagueBreakdown };
+        };
 
-                        {filteredStadiums.length === 0 ? (
-                            <div className="empty-state">
-                                <div className="empty-state-icon">🏟️</div>
-                                <div className="empty-state-text">No stadiums visited yet</div>
-                                <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Start logging games to collect stamps!</p>
-                                <button className="button" onClick={() => { setView('home'); setShowAddGameModal(true); }}>
-                                    Log Your First Game
-                                </button>
+        const stats = getStats();
+
+        const filteredGames = activeLeague === 'ALL' 
+            ? games 
+            : games.filter(g => g.league === activeLeague);
+
+        const filteredStadiums = activeLeague === 'ALL'
+            ? stadiums
+            : stadiums.filter(s => s.league === activeLeague);
+
+        if (view === 'home') {
+            return (
+                <div>
+                    <div className="passport-cover">
+                        <div className="passport-title">STADIUM PASSPORT</div>
+                        <div className="passport-subtitle">Your Journey Through Sports</div>
+                    </div>
+
+                    <div className="section-title" style={{ marginTop: '20px' }}>BY LEAGUE</div>
+                    <div className="stats-grid">
+                        {leagues.slice(1).map(league => (
+                            <div 
+                                key={league} 
+                                className="stat-card" 
+                                onClick={() => {
+                                    setActiveLeague(league);
+                                    setView('stamps');
+                                }}
+                                style={{ cursor: 'pointer', transition: 'all 0.3s' }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-4px)';
+                                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.3)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
+                                }}
+                            >
+                                <div className="stat-label">{league}</div>
+                                <div style={{ color: '#d4af37', fontSize: '1.2rem', marginTop: '10px' }}>
+                                    {stats.leagueBreakdown[league].stadiums} stadiums
+                                </div>
+                                <div style={{ color: '#b8945f', fontSize: '0.9rem' }}>
+                                    {stats.leagueBreakdown[league].games} games
+                                </div>
                             </div>
-                        ) : (
-                            <div className="stamps-container">
-                                {filteredStadiums.map(stadium => {
-                                    const stadiumGames = filteredGames.filter(g => 
-                                        g.stadium.toLowerCase() === stadium.name.toLowerCase() && 
-                                        g.league === stadium.league
-                                    );
-                                    const stadiumKey = `${stadium.league}-${stadium.name}`;
-                                    const isExpanded = expandedStadium === stadiumKey;
+                        ))}
+                    </div>
 
-                                    return (
-                                        <div key={stadiumKey} className="stamp">
-                                            <div 
-                                                className="stamp-header-clickable" 
-                                                onClick={() => setExpandedStadium(isExpanded ? null : stadiumKey)}
-                                                style={{ cursor: 'pointer' }}
-                                            >
-                                                <div className="stamp-header">
-                                                    <div className="stamp-league">{stadium.league}</div>
-                                                    <div className="stamp-visits">
-                                                        {stadium.visitCount} {stadium.visitCount === 1 ? 'visit' : 'visits'}
-                                                    </div>
-                                                </div>
-                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                                    <div>
-                                                        <div className="stamp-stadium">{stadium.name}</div>
-                                                        <div className="stamp-city">{stadium.city}</div>
-                                                    </div>
-                                                    <div style={{ fontSize: '1.5rem', color: '#d4af37', marginLeft: '10px' }}>
-                                                        {isExpanded ? '▼' : '▶'}
-                                                    </div>
+                    <div style={{ display: 'flex', gap: '15px', marginTop: '30px' }}>
+                        <button className="button" style={{ flex: 1 }} onClick={() => setShowAddGameModal(true)}>
+                            + Log New Game
+                        </button>
+                        <button className="button-secondary button" style={{ flex: 1 }} onClick={() => setView('stamps')}>
+                            View All Stamps
+                        </button>
+                    </div>
+
+                    {showAddGameModal && <AddGameModal onClose={() => setShowAddGameModal(false)} onSave={addGame} />}
+                </div>
+            );
+        }
+
+        if (view === 'stamps') {
+            return (
+                <div>
+                    <div className="passport-cover">
+                        <div className="passport-title">YOUR STAMPS</div>
+                    </div>
+
+                    <button className="button-secondary button" onClick={() => setView('home')}>
+                        ← Back to Home
+                    </button>
+
+                    <div className="league-tabs">
+                        {leagues.map(league => (
+                            <button
+                                key={league}
+                                className={`league-tab ${activeLeague === league ? 'active' : ''}`}
+                                onClick={() => setActiveLeague(league)}
+                            >
+                                {league}
+                            </button>
+                        ))}
+                    </div>
+
+                    {filteredStadiums.length === 0 ? (
+                        <div className="empty-state">
+                            <div className="empty-state-icon">🏟️</div>
+                            <div className="empty-state-text">No stadiums visited yet</div>
+                            <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Start logging games to collect stamps!</p>
+                            <button className="button" onClick={() => { setView('home'); setShowAddGameModal(true); }}>
+                                Log Your First Game
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="stamps-container">
+                            {filteredStadiums.map(stadium => {
+                                const stadiumGames = filteredGames.filter(g => 
+                                    g.stadium.toLowerCase() === stadium.name.toLowerCase() && 
+                                    g.league === stadium.league
+                                );
+                                const stadiumKey = `${stadium.league}-${stadium.name}`;
+                                const isExpanded = expandedStadium === stadiumKey;
+
+                                return (
+                                    <div key={stadiumKey} className="stamp">
+                                        <div 
+                                            className="stamp-header-clickable" 
+                                            onClick={() => setExpandedStadium(isExpanded ? null : stadiumKey)}
+                                            style={{ cursor: 'pointer' }}
+                                        >
+                                            <div className="stamp-header">
+                                                <div className="stamp-league">{stadium.league}</div>
+                                                <div className="stamp-visits">
+                                                    {stadium.visitCount} {stadium.visitCount === 1 ? 'visit' : 'visits'}
                                                 </div>
                                             </div>
-                                            
-                                            {isExpanded && (
-                                                <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '2px dashed #d4af37' }}>
-                                                    {stadiumGames.map(game => (
-                                                        <div key={game.id} className="stamp-game">
-                                                            <div className="stamp-teams">
-                                                                {game.awayTeam} @ {game.homeTeam}
-                                                            </div>
-                                                            <div className="stamp-score">
-                                                                {game.awayScore} - {game.homeScore}
-                                                            </div>
-                                                            <div className="stamp-date">{game.date}</div>
-                                                            {game.notes && (
-                                                                <div className="stamp-notes">{game.notes}</div>
-                                                            )}
-                                                        </div>
-                                                    ))}
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <div>
+                                                    <div className="stamp-stadium">{stadium.name}</div>
+                                                    <div className="stamp-city">{stadium.city}</div>
                                                 </div>
-                                            )}
+                                                <div style={{ fontSize: '1.5rem', color: '#d4af37', marginLeft: '10px' }}>
+                                                    {isExpanded ? '▼' : '▶'}
+                                                </div>
+                                            </div>
                                         </div>
-                                    );
-                                })}
+                                        
+                                        {isExpanded && (
+                                            <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '2px dashed #d4af37' }}>
+                                                {stadiumGames.map(game => (
+                                                    <div key={game.id} className="stamp-game">
+                                                        <div className="stamp-teams">
+                                                            {game.awayTeam} @ {game.homeTeam}
+                                                        </div>
+                                                        <div className="stamp-score">
+                                                            {game.awayScore} - {game.homeScore}
+                                                        </div>
+                                                        <div className="stamp-date">{game.date}</div>
+                                                        {game.notes && (
+                                                            <div className="stamp-notes">{game.notes}</div>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
+
+                    {showAddGameModal && <AddGameModal onClose={() => setShowAddGameModal(false)} onSave={addGame} />}
+                </div>
+            );
+        }
+    }
+
+    function AddGameModal({ onClose, onSave }) {
+        const [formData, setFormData] = useState({
+            league: 'MLB',
+            stadium: '',
+            city: '',
+            state: '',
+            homeTeam: '',
+            awayTeam: '',
+            homeScore: '',
+            awayScore: '',
+            date: new Date().toISOString().split('T')[0],
+            notes: ''
+        });
+
+        const availableStadiums = STADIUM_LIBRARY[formData.league] || [];
+        const selectedStadiumData = availableStadiums.find(s => s.name === formData.stadium);
+
+        const handleChange = (e) => {
+            const { name, value } = e.target;
+            
+            if (name === 'league') {
+                // Reset stadium when league changes
+                setFormData({
+                    ...formData,
+                    league: value,
+                    stadium: '',
+                    city: '',
+                    state: '',
+                    homeTeam: ''
+                });
+            } else if (name === 'stadium') {
+                // Auto-fill city, state, and home team when stadium is selected
+                const stadiumData = availableStadiums.find(s => s.name === value);
+                const homeTeams = stadiumData?.homeTeam || [];
+                setFormData({
+                    ...formData,
+                    stadium: value,
+                    city: stadiumData?.city || '',
+                    state: stadiumData?.state || '',
+                    homeTeam: homeTeams.length === 1 ? homeTeams[0] : '' // Auto-fill if only one team
+                });
+            } else {
+                setFormData({
+                    ...formData,
+                    [name]: value
+                });
+            }
+        };
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            if (formData.stadium && formData.city && formData.state && formData.homeTeam && formData.awayTeam) {
+                const gameData = {
+                    ...formData,
+                    city: `${formData.city}, ${formData.state}` // Combine for display
+                };
+                onSave(gameData);
+            }
+        };
+
+        return (
+            <div className="modal" onClick={onClose}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-title">LOG NEW GAME</div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label className="form-label">League</label>
+                            <select 
+                                name="league" 
+                                className="form-select" 
+                                value={formData.league}
+                                onChange={handleChange}
+                            >
+                                <option value="MLB">MLB</option>
+                                <option value="NFL">NFL</option>
+                                <option value="NBA">NBA</option>
+                                <option value="MLS">MLS</option>
+                                <option value="NHL">NHL</option>
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Stadium *</label>
+                            <select 
+                                name="stadium" 
+                                className="form-select" 
+                                value={formData.stadium}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">Select a stadium...</option>
+                                {availableStadiums.map(stadium => (
+                                    <option key={stadium.name} value={stadium.name}>
+                                        {stadium.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {selectedStadiumData && (
+                            <div style={{ 
+                                background: '#0f1419', 
+                                border: '1px solid #d4af37', 
+                                borderRadius: '6px', 
+                                padding: '12px',
+                                marginBottom: '20px',
+                                color: '#b8945f',
+                                fontSize: '0.9rem'
+                            }}>
+                                📍 {selectedStadiumData.city}, {selectedStadiumData.state}
                             </div>
                         )}
 
-                        {showAddGameModal && <AddGameModal onClose={() => setShowAddGameModal(false)} onSave={addGame} />}
-                    </div>
-                );
-            }
-        }
-
-        function AddGameModal({ onClose, onSave }) {
-            const [formData, setFormData] = useState({
-                league: 'MLB',
-                stadium: '',
-                city: '',
-                state: '',
-                homeTeam: '',
-                awayTeam: '',
-                homeScore: '',
-                awayScore: '',
-                date: new Date().toISOString().split('T')[0],
-                notes: ''
-            });
-
-            const availableStadiums = STADIUM_LIBRARY[formData.league] || [];
-            const selectedStadiumData = availableStadiums.find(s => s.name === formData.stadium);
-
-            const handleChange = (e) => {
-                const { name, value } = e.target;
-                
-                if (name === 'league') {
-                    // Reset stadium when league changes
-                    setFormData({
-                        ...formData,
-                        league: value,
-                        stadium: '',
-                        city: '',
-                        state: '',
-                        homeTeam: ''
-                    });
-                } else if (name === 'stadium') {
-                    // Auto-fill city, state, and home team when stadium is selected
-                    const stadiumData = availableStadiums.find(s => s.name === value);
-                    setFormData({
-                        ...formData,
-                        stadium: value,
-                        city: stadiumData?.city || '',
-                        state: stadiumData?.state || '',
-                        homeTeam: stadiumData?.homeTeam || ''
-                    });
-                } else {
-                    setFormData({
-                        ...formData,
-                        [name]: value
-                    });
-                }
-            };
-
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                if (formData.stadium && formData.city && formData.state && formData.homeTeam && formData.awayTeam) {
-                    const gameData = {
-                        ...formData,
-                        city: `${formData.city}, ${formData.state}` // Combine for display
-                    };
-                    onSave(gameData);
-                }
-            };
-
-            return (
-                <div className="modal" onClick={onClose}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-title">LOG NEW GAME</div>
-                        <form onSubmit={handleSubmit}>
+                        <div className="form-row">
                             <div className="form-group">
-                                <label className="form-label">League</label>
-                                <select 
-                                    name="league" 
-                                    className="form-select" 
-                                    value={formData.league}
-                                    onChange={handleChange}
-                                >
-                                    <option value="MLB">MLB</option>
-                                    <option value="NFL">NFL</option>
-                                    <option value="NBA">NBA</option>
-                                    <option value="MLS">MLS</option>
-                                    <option value="NHL">NHL</option>
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label">Stadium *</label>
-                                <select 
-                                    name="stadium" 
-                                    className="form-select" 
-                                    value={formData.stadium}
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="">Select a stadium...</option>
-                                    {availableStadiums.map(stadium => (
-                                        <option key={stadium.name} value={stadium.name}>
-                                            {stadium.name} - {stadium.city}, {stadium.state}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            {selectedStadiumData && (
-                                <div style={{ 
-                                    background: '#0f1419', 
-                                    border: '1px solid #d4af37', 
-                                    borderRadius: '6px', 
-                                    padding: '12px',
-                                    marginBottom: '20px',
-                                    color: '#b8945f',
-                                    fontSize: '0.9rem'
-                                }}>
-                                    📍 {selectedStadiumData.city}, {selectedStadiumData.state}
-                                </div>
-                            )}
-
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label className="form-label">Home Team *</label>
+                                <label className="form-label">Home Team *</label>
+                                {selectedStadiumData?.homeTeam?.length > 1 ? (
+                                    <select 
+                                        name="homeTeam" 
+                                        className="form-select" 
+                                        value={formData.homeTeam}
+                                        onChange={handleChange}
+                                        required
+                                    >
+                                        <option value="">Select home team...</option>
+                                        {selectedStadiumData.homeTeam.map(team => (
+                                            <option key={team} value={team}>
+                                                {team}
+                                            </option>
+                                        ))}
+                                    </select>
+                                ) : (
                                     <input 
                                         type="text" 
                                         name="homeTeam"
@@ -907,90 +918,93 @@
                                         value={formData.homeTeam}
                                         onChange={handleChange}
                                         required
-                                        readOnly={selectedStadiumData?.homeTeam}
-                                        style={selectedStadiumData?.homeTeam ? { 
+                                        readOnly={selectedStadiumData?.homeTeam?.length === 1}
+                                        style={selectedStadiumData?.homeTeam?.length === 1 ? { 
                                             background: '#1a2035',
                                             cursor: 'not-allowed'
                                         } : {}}
-                                        placeholder={selectedStadiumData?.homeTeam ? selectedStadiumData.homeTeam : "Enter home team"}
+                                        placeholder={selectedStadiumData?.homeTeam?.[0] || "Enter home team"}
                                     />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label">Away Team *</label>
-                                    <input 
-                                        type="text" 
-                                        name="awayTeam"
-                                        className="form-input"
-                                        value={formData.awayTeam}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="Enter away team"
-                                    />
-                                </div>
+                                )}
                             </div>
-
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label className="form-label">Home Score</label>
-                                    <input 
-                                        type="number" 
-                                        name="homeScore"
-                                        className="form-input"
-                                        value={formData.homeScore}
-                                        onChange={handleChange}
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label className="form-label">Away Score</label>
-                                    <input 
-                                        type="number" 
-                                        name="awayScore"
-                                        className="form-input"
-                                        value={formData.awayScore}
-                                        onChange={handleChange}
-                                        placeholder="0"
-                                    />
-                                </div>
-                            </div>
-
                             <div className="form-group">
-                                <label className="form-label">Date</label>
+                                <label className="form-label">Away Team *</label>
                                 <input 
-                                    type="date" 
-                                    name="date"
+                                    type="text" 
+                                    name="awayTeam"
                                     className="form-input"
-                                    value={formData.date}
+                                    value={formData.awayTeam}
                                     onChange={handleChange}
+                                    required
+                                    placeholder="Enter away team"
                                 />
                             </div>
+                        </div>
 
+                        <div className="form-row">
                             <div className="form-group">
-                                <label className="form-label">Notes (Optional)</label>
-                                <textarea 
-                                    name="notes"
-                                    className="form-textarea"
-                                    value={formData.notes}
+                                <label className="form-label">Home Score</label>
+                                <input 
+                                    type="number" 
+                                    name="homeScore"
+                                    className="form-input"
+                                    value={formData.homeScore}
                                     onChange={handleChange}
-                                    placeholder="Memorable moments, weather, who you were with..."
+                                    placeholder="0"
                                 />
                             </div>
-
-                            <div className="button-group">
-                                <button type="button" className="button-secondary button" onClick={onClose}>
-                                    Cancel
-                                </button>
-                                <button type="submit" className="button">
-                                    Save Game
-                                </button>
+                            <div className="form-group">
+                                <label className="form-label">Away Score</label>
+                                <input 
+                                    type="number" 
+                                    name="awayScore"
+                                    className="form-input"
+                                    value={formData.awayScore}
+                                    onChange={handleChange}
+                                    placeholder="0"
+                                />
                             </div>
-                        </form>
-                    </div>
-                </div>
-            );
-        }
+                        </div>
 
-        ReactDOM.render(<StadiumPassport />, document.getElementById('root'));
-    </script>
+                        <div className="form-group">
+                            <label className="form-label">Date</label>
+                            <input 
+                                type="date" 
+                                name="date"
+                                className="form-input"
+                                value={formData.date}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Notes (Optional)</label>
+                            <textarea 
+                                name="notes"
+                                className="form-textarea"
+                                value={formData.notes}
+                                onChange={handleChange}
+                                placeholder="Memorable moments, weather, who you were with..."
+                            />
+                        </div>
+
+                        <div className="button-group">
+                            <button type="button" className="button-secondary button" onClick={onClose}>
+                                Cancel
+                            </button>
+                            <button type="submit" className="button">
+                                Save Game
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+
+    ReactDOM.render(<StadiumPassport />, document.getElementById('root'));
+</script>
+```
+
 </body>
 </html>
