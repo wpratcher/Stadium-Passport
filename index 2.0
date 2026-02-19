@@ -1,0 +1,362 @@
+import { useState } from "react";
+import { X, MapPin, Check } from "lucide-react";
+import { STADIUM_LIBRARY } from "../data/stadiums";
+import type { Game } from "../hooks/usePassportData";
+
+interface AddGameModalProps {
+  onClose: () => void;
+  onSave: (data: Omit<Game, "id">) => void;
+}
+
+type FormData = {
+  league: string;
+  stadium: string;
+  city: string;
+  state: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: string;
+  awayScore: string;
+  date: string;
+  notes: string;
+};
+
+const GOLD = "#d4af37";
+const DARK = "#0f1419";
+const NAV = "#1e2847";
+
+export function AddGameModal({ onClose, onSave }: AddGameModalProps) {
+  const [formData, setFormData] = useState<FormData>({
+    league: "MLB",
+    stadium: "",
+    city: "",
+    state: "",
+    homeTeam: "",
+    awayTeam: "",
+    homeScore: "",
+    awayScore: "",
+    date: new Date().toISOString().split("T")[0],
+    notes: "",
+  });
+
+  const availableStadiums = STADIUM_LIBRARY[formData.league] || [];
+  const selectedStadiumData = availableStadiums.find((s) => s.name === formData.stadium);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    if (name === "league") {
+      setFormData({ ...formData, league: value, stadium: "", city: "", state: "", homeTeam: "" });
+    } else if (name === "stadium") {
+      const sd = availableStadiums.find((s) => s.name === value);
+      setFormData({
+        ...formData,
+        stadium: value,
+        city: sd?.city || "",
+        state: sd?.state || "",
+        homeTeam: sd?.homeTeam?.length === 1 ? sd.homeTeam[0] : "",
+      });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.stadium || !formData.city || !formData.homeTeam || !formData.awayTeam) return;
+    onSave({
+      league: formData.league,
+      stadium: formData.stadium,
+      city: `${formData.city}, ${formData.state}`,
+      homeTeam: formData.homeTeam,
+      awayTeam: formData.awayTeam,
+      homeScore: formData.homeScore,
+      awayScore: formData.awayScore,
+      date: formData.date,
+      notes: formData.notes,
+    });
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "10px 12px",
+    background: DARK,
+    border: `1.5px solid ${GOLD}50`,
+    borderRadius: "6px",
+    color: GOLD,
+    fontSize: "0.9rem",
+    fontFamily: "'Courier Prime', monospace",
+    outline: "none",
+    transition: "border-color 0.2s",
+  };
+
+  const labelStyle: React.CSSProperties = {
+    display: "block",
+    color: GOLD,
+    fontSize: "0.7rem",
+    letterSpacing: "2px",
+    textTransform: "uppercase",
+    marginBottom: "6px",
+    fontFamily: "'Courier Prime', monospace",
+  };
+
+  return (
+    <div
+      className="fixed inset-0 flex items-end sm:items-center justify-center z-50"
+      style={{ background: "rgba(0,0,0,0.75)", backdropFilter: "blur(4px)" }}
+      onClick={onClose}
+    >
+      <div
+        className="w-full sm:max-w-md rounded-t-2xl sm:rounded-2xl overflow-hidden"
+        style={{
+          background: `linear-gradient(160deg, ${NAV} 0%, #141b2d 100%)`,
+          border: `2px solid ${GOLD}60`,
+          maxHeight: "92vh",
+          overflowY: "auto",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div
+          className="sticky top-0 flex items-center justify-between px-5 py-4"
+          style={{
+            background: `linear-gradient(90deg, ${NAV}, #141b2d)`,
+            borderBottom: `1px solid ${GOLD}30`,
+            zIndex: 10,
+          }}
+        >
+          <div>
+            <div
+              style={{
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+                color: GOLD,
+                fontFamily: "'Playfair Display', serif",
+                letterSpacing: "2px",
+              }}
+            >
+              LOG NEW GAME
+            </div>
+            <div
+              style={{
+                fontSize: "0.6rem",
+                color: "#b8945f",
+                letterSpacing: "3px",
+                fontFamily: "'Courier Prime', monospace",
+                textTransform: "uppercase",
+              }}
+            >
+              Add a stadium to your passport
+            </div>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded-full p-2 transition-colors"
+            style={{ color: GOLD, background: `${GOLD}15` }}
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-5 flex flex-col gap-4">
+          {/* League */}
+          <div>
+            <label style={labelStyle}>League</label>
+            <select
+              name="league"
+              value={formData.league}
+              onChange={handleChange}
+              style={inputStyle}
+            >
+              {["MLB", "NFL", "NBA", "MLS", "NHL"].map((l) => (
+                <option key={l} value={l} style={{ background: DARK }}>
+                  {l}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Stadium */}
+          <div>
+            <label style={labelStyle}>Stadium *</label>
+            <select
+              name="stadium"
+              value={formData.stadium}
+              onChange={handleChange}
+              required
+              style={inputStyle}
+            >
+              <option value="" style={{ background: DARK }}>Select a stadium…</option>
+              {availableStadiums.map((s) => (
+                <option key={s.name} value={s.name} style={{ background: DARK }}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Location preview */}
+          {selectedStadiumData && (
+            <div
+              className="flex items-center gap-2 rounded-lg px-3 py-2"
+              style={{
+                background: `${GOLD}10`,
+                border: `1px solid ${GOLD}30`,
+                color: "#b8945f",
+                fontSize: "0.8rem",
+                fontFamily: "'Courier Prime', monospace",
+              }}
+            >
+              <MapPin size={14} style={{ color: GOLD, flexShrink: 0 }} />
+              {selectedStadiumData.city}, {selectedStadiumData.state}
+            </div>
+          )}
+
+          {/* Home + Away Team */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label style={labelStyle}>Home Team *</label>
+              {selectedStadiumData?.homeTeam?.length && selectedStadiumData.homeTeam.length > 1 ? (
+                <select
+                  name="homeTeam"
+                  value={formData.homeTeam}
+                  onChange={handleChange}
+                  required
+                  style={inputStyle}
+                >
+                  <option value="" style={{ background: DARK }}>Select…</option>
+                  {selectedStadiumData.homeTeam.map((t) => (
+                    <option key={t} value={t} style={{ background: DARK }}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  name="homeTeam"
+                  value={formData.homeTeam}
+                  onChange={handleChange}
+                  required
+                  readOnly={!!selectedStadiumData?.homeTeam?.length}
+                  placeholder="Home team"
+                  style={{
+                    ...inputStyle,
+                    cursor: selectedStadiumData?.homeTeam?.length ? "not-allowed" : "text",
+                    opacity: selectedStadiumData?.homeTeam?.length ? 0.8 : 1,
+                  }}
+                />
+              )}
+            </div>
+            <div>
+              <label style={labelStyle}>Away Team *</label>
+              <input
+                type="text"
+                name="awayTeam"
+                value={formData.awayTeam}
+                onChange={handleChange}
+                required
+                placeholder="Away team"
+                style={inputStyle}
+              />
+            </div>
+          </div>
+
+          {/* Scores */}
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label style={labelStyle}>Home Score</label>
+              <input
+                type="number"
+                name="homeScore"
+                value={formData.homeScore}
+                onChange={handleChange}
+                placeholder="0"
+                min="0"
+                style={inputStyle}
+              />
+            </div>
+            <div>
+              <label style={labelStyle}>Away Score</label>
+              <input
+                type="number"
+                name="awayScore"
+                value={formData.awayScore}
+                onChange={handleChange}
+                placeholder="0"
+                min="0"
+                style={inputStyle}
+              />
+            </div>
+          </div>
+
+          {/* Date */}
+          <div>
+            <label style={labelStyle}>Date</label>
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              style={{ ...inputStyle, colorScheme: "dark" }}
+            />
+          </div>
+
+          {/* Notes */}
+          <div>
+            <label style={labelStyle}>Notes (Optional)</label>
+            <textarea
+              name="notes"
+              value={formData.notes}
+              onChange={handleChange}
+              placeholder="Memorable moments, weather, who you went with…"
+              rows={3}
+              style={{
+                ...inputStyle,
+                resize: "vertical",
+                lineHeight: "1.5",
+              }}
+            />
+          </div>
+
+          {/* Buttons */}
+          <div className="flex gap-3 pt-1">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 py-3 rounded-lg transition-all"
+              style={{
+                background: "transparent",
+                border: `1.5px solid ${GOLD}50`,
+                color: GOLD,
+                fontFamily: "'Courier Prime', monospace",
+                letterSpacing: "1px",
+                fontSize: "0.85rem",
+              }}
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex-1 py-3 rounded-lg flex items-center justify-center gap-2 transition-all"
+              style={{
+                background: GOLD,
+                border: "none",
+                color: "#1a1f3a",
+                fontFamily: "'Courier Prime', monospace",
+                fontWeight: "bold",
+                letterSpacing: "1px",
+                fontSize: "0.85rem",
+              }}
+            >
+              <Check size={16} />
+              Stamp It
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
